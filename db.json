@@ -1,0 +1,34 @@
+{
+  "registros": [
+    {
+      "id": "f953",
+      "cliente": "Patricia Garcia",
+      "vehiculo": "Nissan Tsuru 2009",
+      "servicio": "Afinacion Mayor"
+    },
+    {
+      "id": "4798",
+      "cliente": "David Martinez ",
+      "vehiculo": "Honda Accord 2005",
+      "servicio": "Cambio de Aceite"
+    },
+    {
+      "id": "1eb0",
+      "cliente": "Sebastian Martinez",
+      "vehiculo": "Chevrolet Tracker 2004",
+      "servicio": "Cambio de Bujias"
+    },
+    {
+      "id": "ab2b",
+      "cliente": "Andre Pierre Gignac",
+      "vehiculo": "Lamborghini Gallardo",
+      "servicio": "Revision de frenos"
+    },
+    {
+      "id": "395a",
+      "cliente": "Rita Corpus",
+      "vehiculo": "Carro bonito",
+      "servicio": "Ponerlo mas bonito"
+    }
+  ]
+}
