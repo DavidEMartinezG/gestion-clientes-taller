@@ -40,3 +40,93 @@
 .read-the-docs {
   color: #888;
 }
+
+
+.formulario-registro {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #b7dbffbf;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: "Inter", sans-serif;
+}
+
+.formulario-registro h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.formulario-registro label {
+  display: block;
+  font-weight: 600;
+  margin-top: 1rem;
+  color: #444;
+}
+
+.formulario-registro input,
+.formulario-registro select {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  margin-top: 0.4rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: border 0.2s ease;
+}
+
+.formulario-registro input:focus,
+.formulario-registro select:focus {
+  border-color: #0077ff;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 119, 255, 0.1);
+}
+
+.formulario-registro button {
+  margin-top: 1.5rem;
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #0077ff;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.formulario-registro button:hover {
+  background-color: #005fd1;
+}
+
+.formulario-registro button:active {
+  transform: scale(0.98);
+}
+
+.navbar {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  color: #00bfff;
+}
+
+
+

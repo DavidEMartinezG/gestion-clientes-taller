@@ -1,48 +1,135 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const URL = "http://localhost:3001/registros";
 
-function Registro() {
-  const [cliente, setCliente] = useState("");
+function Formulario() {
+  const [clientes, setClientes] = useState([]);
+  const [clienteSeleccionado, setClienteSeleccionado] = useState("");
+  const [nuevoCliente, setNuevoCliente] = useState("");
   const [vehiculo, setVehiculo] = useState("");
   const [servicio, setServicio] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const nuevoRegistro = { cliente, vehiculo, servicio };
+  useEffect(() => {
+    fetch("http://localhost:3001/clientes")
+      .then((res) => res.json())
+      .then((data) => setClientes(data));
+  }, []);
 
-    fetch(URL, {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    let clienteId = clienteSeleccionado ? parseInt(clienteSeleccionado) : null;
+
+    // 🔹 Si se escribió un nuevo cliente, crear ID consecutivo
+    if (!clienteId && nuevoCliente) {
+      const nuevoId =
+        clientes.length > 0
+          ? Math.max(...clientes.map((c) => parseInt(c.id))) + 1
+          : 1;
+
+      const nuevoClienteObj = { id: nuevoId, nombre: nuevoCliente };
+
+      await fetch("http://localhost:3001/clientes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(nuevoClienteObj),
+      });
+
+      clienteId = nuevoId;
+      setClientes([...clientes, nuevoClienteObj]);
+    }
+
+    // 🔹 Crear vehículo con ID consecutivo
+    const vehiculosRes = await fetch("http://localhost:3001/vehiculos");
+    const vehiculosData = await vehiculosRes.json();
+    const nuevoVehiculoId =
+      vehiculosData.length > 0
+        ? Math.max(...vehiculosData.map((v) => parseInt(v.id))) + 1
+        : 1;
+
+    const nuevoVehiculo = {
+      id: nuevoVehiculoId,
+      clienteId: clienteId,
+      nombre: vehiculo,
+    };
+
+    await fetch("http://localhost:3001/vehiculos", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(nuevoRegistro),
-    }).then(() => {
-      setCliente("");
-      setVehiculo("");
-      setServicio("");
-      alert("Registro guardado con éxito ✅");
+      body: JSON.stringify(nuevoVehiculo),
     });
+
+    // 🔹 Crear servicio también con ID consecutivo
+    const serviciosRes = await fetch("http://localhost:3001/servicios");
+    const serviciosData = await serviciosRes.json();
+    const nuevoServicioId =
+      serviciosData.length > 0
+        ? Math.max(...serviciosData.map((s) => parseInt(s.id))) + 1
+        : 1;
+
+    await fetch("http://localhost:3001/servicios", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: nuevoServicioId,
+        vehiculoId: nuevoVehiculoId,
+        tipo: servicio,
+      }),
+    });
+
+    // Limpiar campos
+    setNuevoCliente("");
+    setVehiculo("");
+    setServicio("");
+    setClienteSeleccionado("");
+    alert("Registro guardado correctamente ✅");
   };
 
   return (
-    <div>
-      <h2>Formulario de Registro</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Cliente: </label>
-          <input value={cliente} onChange={(e) => setCliente(e.target.value)} required />
-        </div>
-        <div>
-          <label>Vehículo: </label>
-          <input value={vehiculo} onChange={(e) => setVehiculo(e.target.value)} required />
-        </div>
-        <div>
-          <label>Servicio: </label>
-          <input value={servicio} onChange={(e) => setServicio(e.target.value)} required />
-        </div>
-        <button type="submit">Registrar</button>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit} className="formulario-registro">
+      <h2>Registrar nuevo servicio</h2>
+
+      <label>Seleccionar cliente existente:</label>
+      <select
+        value={clienteSeleccionado}
+        onChange={(e) => setClienteSeleccionado(e.target.value)}
+      >
+        <option value="">-- Selecciona cliente --</option>
+        {clientes.map((c) => (
+          <option key={c.id} value={c.id}>
+            {c.nombre}
+          </option>
+        ))}
+      </select>
+
+      <label>O registrar nuevo cliente:</label>
+      <input
+        type="text"
+        placeholder="Nombre del cliente"
+        value={nuevoCliente}
+        onChange={(e) => setNuevoCliente(e.target.value)}
+      />
+
+      <label>Vehículo:</label>
+      <input
+        type="text"
+        placeholder="Ej. Tsuru 2008"
+        value={vehiculo}
+        onChange={(e) => setVehiculo(e.target.value)}
+        required
+      />
+
+      <label>Servicio realizado:</label>
+      <input
+        type="text"
+        placeholder="Ej. Cambio de aceite"
+        value={servicio}
+        onChange={(e) => setServicio(e.target.value)}
+        required
+      />
+
+      <button type="submit">Guardar registro</button>
+    </form>
   );
 }
 
-export default Registro;
+export default Formulario;

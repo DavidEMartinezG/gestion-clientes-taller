@@ -1,34 +1,104 @@
 {
-  "registros": [
+  "clientes": [
     {
-      "id": "f953",
-      "cliente": "Patricia Garcia",
-      "vehiculo": "Nissan Tsuru 2009",
-      "servicio": "Afinacion Mayor"
+      "id": 1,
+      "nombre": "Rita Corpus"
     },
     {
-      "id": "4798",
-      "cliente": "David Martinez ",
-      "vehiculo": "Honda Accord 2005",
-      "servicio": "Cambio de Aceite"
+      "id": 2,
+      "nombre": "David Martinez"
     },
     {
-      "id": "1eb0",
-      "cliente": "Sebastian Martinez",
-      "vehiculo": "Chevrolet Tracker 2004",
-      "servicio": "Cambio de Bujias"
+      "id": 3,
+      "nombre": "Sebastian Martinez"
     },
     {
-      "id": "ab2b",
-      "cliente": "Andre Pierre Gignac",
-      "vehiculo": "Lamborghini Gallardo",
-      "servicio": "Revision de frenos"
+      "id": 4,
+      "nombre": "Juan Perez"
+    }
+  ],
+  "vehiculos": [
+    {
+      "id": 1,
+      "clienteId": 1,
+      "nombre": "Crossfox 2009"
     },
     {
-      "id": "395a",
-      "cliente": "Rita Corpus",
-      "vehiculo": "Carro bonito",
-      "servicio": "Ponerlo mas bonito"
+      "id": 2,
+      "clienteId": 2,
+      "nombre": "Tsuru 2008"
+    },
+    {
+      "id": 3,
+      "clienteId": 2,
+      "nombre": "Accord 2005"
+    },
+    {
+      "id": 4,
+      "clienteId": 1,
+      "nombre": "Beetle 2006"
+    },
+    {
+      "id": 5,
+      "clienteId": 3,
+      "nombre": "Mazda RX7 2001"
+    },
+    {
+      "id": 6,
+      "clienteId": 1,
+      "nombre": "Sonic 2012"
+    },
+    {
+      "id": 7,
+      "clienteId": 2,
+      "nombre": "VW VOCHO 2001"
+    },
+    {
+      "id": 8,
+      "clienteId": 4,
+      "nombre": "Chevy 1999"
+    }
+  ],
+  "servicios": [
+    {
+      "id": 1,
+      "vehiculoId": 1,
+      "tipo": "Inspeccion"
+    },
+    {
+      "id": 2,
+      "vehiculoId": 2,
+      "tipo": "Cambio de aceite"
+    },
+    {
+      "id": 3,
+      "vehiculoId": 3,
+      "tipo": "Afinacion Mayor"
+    },
+    {
+      "id": 4,
+      "vehiculoId": 4,
+      "tipo": "Cambio de balatas"
+    },
+    {
+      "id": 5,
+      "vehiculoId": 5,
+      "tipo": "Cambio de bujias"
+    },
+    {
+      "id": 6,
+      "vehiculoId": 6,
+      "tipo": "Cambio de tapa de punterias"
+    },
+    {
+      "id": 7,
+      "vehiculoId": 7,
+      "tipo": "Afinacion a motor"
+    },
+    {
+      "id": 8,
+      "vehiculoId": 8,
+      "tipo": "Cambio de balatas"
     }
   ]
 }
